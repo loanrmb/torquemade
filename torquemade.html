@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torquemade — Shopify Websites for Motorcycle Dealerships</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060606;
+    --surface: #0e0e0e;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.16);
+    --text: #ffffff;
+    --text-2: rgba(255,255,255,0.55);
+    --text-3: rgba(255,255,255,0.3);
+    --accent: #ffffff;
+    --font: 'Geist', sans-serif;
+    --mono: 'Geist Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── GLOW ORBS ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(120px);
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(255,255,255,0.03); top: -200px; left: 50%; transform: translateX(-50%); }
+  .orb-2 { width: 400px; height: 400px; background: rgba(180,180,255,0.025); bottom: 200px; right: -100px; }
+  body.loaded .orb { opacity: 1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 60px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled {
+    border-color: var(--border);
+    background: rgba(6,6,6,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.6s 0.2s, transform 0.6s 0.2s;
+  }
+  body.loaded .nav-logo { opacity: 1; transform: translateY(0); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+  }
+  body.loaded .nav-links { opacity: 1; transform: translateY(0); }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.6s 0.4s, transform 0.6s 0.4s;
+  }
+  body.loaded .nav-cta { opacity: 1; transform: translateY(0); }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 48px 80px;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s 0.3s, transform 0.8s 0.3s;
+  }
+  .hero-badge span { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  body.loaded .hero-badge { opacity: 1; transform: translateY(0); }
+
+  .hero-title {
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    max-width: 900px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s 0.5s, transform 0.9s 0.5s;
+  }
+  body.loaded .hero-title { opacity: 1; transform: translateY(0); }
+
+  .hero-title .dim { color: rgba(255,255,255,0.28); }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 480px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s 0.7s, transform 0.8s 0.7s;
+  }
+  body.loaded .hero-sub { opacity: 1; transform: translateY(0); }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s 0.9s, transform 0.8s 0.9s;
+  }
+  body.loaded .hero-actions { opacity: 1; transform: translateY(0); }
+
+  .btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 8px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-hero:hover { opacity: 0.88; }
+
+  /* ── HERO BOTTOM LINE ── */
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 1s 1.4s;
+  }
+  body.loaded .hero-scroll { opacity: 1; }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  /* ── STATS BAND ── */
+  .stats {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 48px 40px;
+    border-right: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item.visible { opacity: 1; transform: translateY(0); }
+  .stat-num {
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 13px; color: var(--text-3); letter-spacing: 0.02em; line-height: 1.5; }
+
+  /* ── SECTION ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 48px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 20px;
+    font-family: var(--mono);
+  }
+  .section-title {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    max-width: 680px;
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-2);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── WORK / PORTFOLIO ── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 80px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .work-card {
+    background: var(--bg);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s, transform 0.7s, background 0.3s;
+  }
+  .work-card:hover { background: var(--surface); }
+  .work-card.visible { opacity: 1; transform: translateY(0); }
+  .work-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .work-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
+  }
+
+  .mock-browser {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .mock-bar {
+    height: 28px;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .mock-url {
+    margin: 0 auto;
+    height: 14px;
+    width: 160px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    font-size: 9px;
+    color: var(--text-3);
+    font-family: var(--mono);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mock-content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mock-hero-block {
+    height: 44px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-3);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .mock-row { display: flex; gap: 8px; }
+  .mock-block {
+    height: 28px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 3px;
+    flex: 1;
+  }
+  .mock-block.wide { flex: 2; }
+  .mock-block.accent { background: rgba(255,255,255,0.08); }
+
+  .work-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .work-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .work-location { font-size: 12px; color: var(--text-3); font-family: var(--mono); }
+  .work-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-3);
+    font-family: var(--mono);
+  }
+  .work-stats { display: flex; gap: 20px; }
+  .work-stat { }
+  .work-stat-num { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }
+  .work-stat-label { font-size: 11px; color: var(--text-3); }
+
+  .work-arrow {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-3);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .work-card:hover .work-arrow { border-color: var(--border-hover); color: var(--text); transform: translate(2px, -2px); }
+
+  /* ── SERVICES / OFFER ── */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 80px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .offer-card {
+    background: var(--bg);
+    padding: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s, background 0.3s;
+  }
+  .offer-card:hover { background: var(--surface); }
+  .offer-card.visible { opacity: 1; transform: translateY(0); }
+  .offer-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .offer-price {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .offer-price sub { font-size: 18px; font-weight: 400; color: var(--text-2); letter-spacing: 0; vertical-align: baseline; }
+  .offer-name { font-size: 12px; font-family: var(--mono); color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
+  .offer-desc { font-size: 15px; color: var(--text-2); line-height: 1.65; font-weight: 300; margin-bottom: 32px; }
+  .offer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .offer-list li {
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .offer-list li::before {
+    content: '—';
+    color: var(--text-3);
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+  .offer-cta { margin-top: 40px; }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .step {
+    background: var(--bg);
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 32px;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.6s, transform 0.6s, background 0.2s;
+  }
+  .step:hover { background: var(--surface); }
+  .step.visible { opacity: 1; transform: translateX(0); }
+  .step-num {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+  .step-content { }
+  .step-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .step-desc { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+  .step-time {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--text-3);
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 80px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .testimonial-card {
+    background: var(--bg);
+    padding: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .testimonial-card.visible { opacity: 1; transform: translateY(0); }
+  .t-quote {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .t-author { display: flex; align-items: center; gap: 12px; }
+  .t-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 500; color: var(--text-2);
+    flex-shrink: 0;
+  }
+  .t-name { font-size: 13px; font-weight: 500; }
+  .t-shop { font-size: 12px; color: var(--text-3); font-family: var(--mono); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 160px 48px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .cta-inner.visible { opacity: 1; transform: translateY(0); }
+  .cta-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .cta-sub { font-size: 16px; color: var(--text-2); line-height: 1.65; font-weight: 300; margin-bottom: 48px; }
+  .cta-actions { display: flex; align-items: center; justify-content: center; gap: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-logo { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; }
+  .footer-copy { font-size: 12px; color: var(--text-3); font-family: var(--mono); }
+
+  /* ── SCROLL ANIMATION UTIL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .section-inner { padding: 80px 24px; }
+    .work-grid, .offer-grid, .testimonial-grid { grid-template-columns: 1fr; }
+    .offer-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">torquemade</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#contact" class="btn-primary">Book a call →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span></span> Shopify specialist — Powersports &amp; Motorcycle Dealers</div>
+  <h1 class="hero-title">
+    Your dealership.<br>
+    <span class="dim">Online. Selling.</span>
+  </h1>
+  <p class="hero-sub">Custom Shopify websites built exclusively for motorcycle and powersports dealers. Go live in 10 business days.</p>
+  <div class="hero-actions">
+    <a href="#work" class="btn-hero">See the work</a>
+    <a href="#services" class="btn-ghost">View pricing</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats" id="stats">
+  <div class="stat-item">
+    <div class="stat-num">+340%</div>
+    <div class="stat-label">Average organic traffic increase<br>in first 4 months</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10</div>
+    <div class="stat-label">Business days<br>from kickoff to live</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Markets across<br>US &amp; Europe</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Moto &amp; powersports<br>focused</div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-inner">
+    <p class="section-label reveal">Selected work</p>
+    <h2 class="section-title reveal">Sites that perform,<br>not just look good.</h2>
+    <p class="section-sub reveal">Every number below comes straight from GA4 and Shopify analytics — no fluff.</p>
+
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-arrow">↗</div>
+        <div class="work-card-img">
+          <div class="mock-browser">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">blackhillsmoto.com</div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-hero-block">Black Hills Moto</div>
+              <div class="mock-row"><div class="mock-block wide accent"></div><div class="mock-block"></div></div>
+              <div class="mock-row"><div class="mock-block"></div><div class="mock-block"></div><div class="mock-block wide"></div></div>
+              <div class="mock-row"><div class="mock-block wide"></div><div class="mock-block"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="work-name">Black Hills Moto</div>
+        <div class="work-meta">
+          <span class="work-location">Rapid City, SD</span>
+          <span class="work-tag">Shopify</span>
+        </div>
+        <div class="work-stats">
+          <div class="work-stat">
+            <div class="work-stat-num">+340%</div>
+            <div class="work-stat-label">Organic traffic</div>
+          </div>
+          <div class="work-stat">
+            <div class="work-stat-num">2:40</div>
+            <div class="work-stat-label">Avg. session</div>
+          </div>
+          <div class="work-stat">
+            <div class="work-stat-num">↑12</div>
+            <div class="work-stat-label">Search positions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-arrow">↗</div>
+        <div class="work-card-img">
+          <div class="mock-browser">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">desertridepowersports.com</div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-hero-block">Desert Ride Powersports</div>
+              <div class="mock-row"><div class="mock-block"></div><div class="mock-block wide accent"></div></div>
+              <div class="mock-row"><div class="mock-block wide"></div><div class="mock-block"></div><div class="mock-block"></div></div>
+              <div class="mock-row"><div class="mock-block accent"></div><div class="mock-block wide"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="work-name">Desert Ride Powersports</div>
+        <div class="work-meta">
+          <span class="work-location">Phoenix, AZ</span>
+          <span class="work-tag">Shopify</span>
+        </div>
+        <div class="work-stats">
+          <div class="work-stat">
+            <div class="work-stat-num">+210%</div>
+            <div class="work-stat-label">Contact form leads</div>
+          </div>
+          <div class="work-stat">
+            <div class="work-stat-num">47%</div>
+            <div class="work-stat-label">Mobile sessions</div>
+          </div>
+          <div class="work-stat">
+            <div class="work-stat-num">4.2s</div>
+            <div class="work-stat-label">Avg. load time</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">Pricing</p>
+    <h2 class="section-title reveal">Simple, transparent.<br>No surprises.</h2>
+    <p class="section-sub reveal">50% upfront, 50% on launch. No hidden fees. Shopify plan billed separately by Shopify.</p>
+
+    <div class="offer-grid">
+      <div class="offer-card featured">
+        <div>
+          <div class="offer-name">Site Build</div>
+          <div class="offer-price">$950 <sub>one-time</sub></div>
+          <p class="offer-desc">A complete, custom Shopify storefront built from scratch around your dealership. Design, copy structure, and SEO foundation included.</p>
+          <div class="offer-cta">
+            <a href="#contact" class="btn-hero">Get started →</a>
+          </div>
+        </div>
+        <div>
+          <ul class="offer-list">
+            <li>Custom design, no templates</li>
+            <li>Mobile-first build</li>
+            <li>GA4 + Search Console setup</li>
+            <li>Used bike inventory system (self-managed)</li>
+            <li>Tutorial videos for your team</li>
+            <li>10 business day delivery</li>
+            <li>2 rounds of revisions included</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-name">Maintenance</div>
+        <div class="offer-price">$250 <sub>/mo</sub></div>
+        <p class="offer-desc">Monthly analytics review. I look at your data, find what's working and what's losing you customers, and fix it.</p>
+        <ul class="offer-list">
+          <li>Monthly GA4 + Search Console review</li>
+          <li>Up to 2 conversion tweaks based on data</li>
+          <li>2 minor on-demand changes</li>
+          <li>Monthly findings email</li>
+        </ul>
+      </div>
+
+      <div class="offer-card" style="border-left: none">
+        <div class="offer-name">Growth</div>
+        <div class="offer-price">$550 <sub>/mo</sub></div>
+        <p class="offer-desc">Everything in Maintenance plus active SEO, Google Business optimization, and seasonal pages to keep bringing new customers in.</p>
+        <ul class="offer-list">
+          <li>Everything in Maintenance</li>
+          <li>Local SEO (rankings &amp; citations)</li>
+          <li>Google Business optimization</li>
+          <li>1 seasonal promo page/quarter</li>
+          <li>Priority 24h response</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">How it works</p>
+    <h2 class="section-title reveal">From call to live<br>in 10 business days.</h2>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <div class="step-title">Discovery call — 15 min</div>
+          <div class="step-desc">We talk about your dealership, your customers, and what you want the site to do for your business.</div>
+        </div>
+        <span class="step-time">Day 0</span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <div class="step-title">Design draft</div>
+          <div class="step-desc">I send you a full homepage mockup for review and feedback before building anything.</div>
+        </div>
+        <span class="step-time">Day 4</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <div class="step-title">Build + revisions</div>
+          <div class="step-desc">Full Shopify build with your feedback incorporated. Two rounds of revisions included.</div>
+        </div>
+        <span class="step-time">Day 4 – 8</span>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div class="step-content">
+          <div class="step-title">Launch + handover</div>
+          <div class="step-desc">Site goes live. I walk you through the admin panel and send tutorial videos for your team.</div>
+        </div>
+        <span class="step-time">Day 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">What dealers say</p>
+    <h2 class="section-title reveal">Real dealerships.<br>Real results.</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="t-quote">"We went from basically invisible on Google to ranking first page for half our key terms in under 3 months. The phone started ringing differently."</p>
+        <div class="t-author">
+          <div class="t-avatar">MK</div>
+          <div>
+            <div class="t-name">Mike K.</div>
+            <div class="t-shop">Black Hills Moto — Rapid City, SD</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="t-quote">"I can add used bikes myself in 2 minutes. That was the thing for me — I didn't want to call someone every time I needed to update inventory."</p>
+        <div class="t-author">
+          <div class="t-avatar">TR</div>
+          <div>
+            <div class="t-name">Tony R.</div>
+            <div class="t-shop">Desert Ride Powersports — Phoenix, AZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="t-quote">"Fast, clean, and he actually knows the moto industry. Didn't have to explain what a track day is or why used bikes matter. 10 days, as promised."</p>
+        <div class="t-author">
+          <div class="t-avatar">JL</div>
+          <div>
+            <div class="t-name">Jake L.</div>
+            <div class="t-shop">Iron Range Cycles — Duluth, MN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="section-inner" style="max-width: 680px; padding-top: 120px; padding-bottom: 120px;">
+    <div class="cta-inner" style="padding: 0; text-align: left; max-width: 100%;">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="cta-title reveal" style="text-align: left; font-size: clamp(36px, 4vw, 56px);">Let's talk about<br>your dealership.</h2>
+      <p class="cta-sub reveal" style="text-align: left; margin-bottom: 56px;">Fill in the form below and I'll get back to you within 24 hours. No pitch, no pressure.</p>
+
+      <form id="contactForm" style="display: flex; flex-direction: column; gap: 16px;">
+        <input type="hidden" name="access_key" value="2a5772a7-dd95-4223-bff9-a06734697d94">
+        <input type="hidden" name="subject" value="New inquiry — torquemade.com">
+        <input type="hidden" name="redirect" value="https://torquemade.com">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">First name</label>
+            <input type="text" name="first_name" required placeholder="John" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">Last name</label>
+            <input type="text" name="last_name" required placeholder="Smith" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">Dealership name</label>
+          <input type="text" name="dealership" required placeholder="Black Hills Moto" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">City</label>
+            <input type="text" name="city" required placeholder="Rapid City" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">State</label>
+            <input type="text" name="state" required placeholder="SD" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">Email</label>
+            <input type="email" name="email" required placeholder="john@blackhillsmoto.com" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">Phone</label>
+            <input type="tel" name="phone" placeholder="+1 (605) 555-0100" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">What are you looking for?</label>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--text-2); transition: border-color 0.2s;" class="check-label">
+              <input type="checkbox" name="service" value="Site build" style="accent-color: white;"> Site build
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--text-2); transition: border-color 0.2s;" class="check-label">
+              <input type="checkbox" name="service" value="Maintenance retainer" style="accent-color: white;"> Maintenance retainer
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--text-2); transition: border-color 0.2s;" class="check-label">
+              <input type="checkbox" name="service" value="Growth retainer" style="accent-color: white;"> Growth retainer
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--text-2); transition: border-color 0.2s;" class="check-label">
+              <input type="checkbox" name="service" value="Not sure yet" style="accent-color: white;"> Not sure yet
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 12px; color: var(--text-3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;">Message <span style="color: var(--text-3); font-size: 11px; text-transform: none; letter-spacing: 0;">(optional)</span></label>
+          <textarea name="message" rows="4" placeholder="Tell me a bit about your dealership and what you're looking for..." style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: var(--font); font-size: 14px; outline: none; resize: vertical; transition: border-color 0.2s; line-height: 1.6;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-hero" style="width: fit-content; margin-top: 8px;">Send message →</button>
+
+        <div id="formSuccess" style="display: none; padding: 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; font-size: 14px; color: var(--text-2);">
+          ✓ Message sent — I'll get back to you within 24 hours.
+        </div>
+        <div id="formError" style="display: none; padding: 16px; border: 1px solid rgba(255,100,100,0.3); border-radius: 8px; font-size: 14px; color: rgba(255,100,100,0.8);">
+          Something went wrong. Email me directly at loanrmb@gmail.com
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">torquemade</span>
+  <span class="footer-copy">© 2025 torquemade.com</span>
+</footer>
+
+<script>
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stat-item, .work-card, .offer-card, .step, .testimonial-card, .cta-inner, .reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 80;
+    observer.observe(el);
+  });
+
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending...';
+      btn.style.opacity = '0.6';
+      btn.disabled = true;
+      const formData = new FormData(this);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('formSuccess').style.display = 'block';
+          this.reset();
+          btn.style.display = 'none';
+        } else { throw new Error(); }
+      } catch {
+        document.getElementById('formError').style.display = 'block';
+        btn.textContent = 'Send message →';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
+</body>
+</html>
