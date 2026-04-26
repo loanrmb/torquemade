@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Geist:wght@600&display=swap');</style>
-  </defs>
-  <rect width="32" height="32" rx="5" fill="#060606"/>
-  <text x="16" y="24" font-family="'Geist','Helvetica Neue',sans-serif" font-size="18" font-weight="600" fill="#ffffff" text-anchor="middle" letter-spacing="-1">tm</text>
-</svg>
