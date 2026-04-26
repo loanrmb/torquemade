@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Torquemade</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060606;--sur:#0e0e0e;--sur2:#111;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.13);
+  --t:#fff;--t2:rgba(255,255,255,.52);--t3:rgba(255,255,255,.26);
+  --f:'Geist',sans-serif;--m:'Geist Mono',monospace;
+  --blue:#4d9fff;--grn:#3ecf8e;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font-family:var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid transparent;transition:all .3s}
+nav.scrolled{border-color:var(--b);background:rgba(6,6,6,.92);backdrop-filter:blur(12px)}
+.nav-logo{font-size:15px;font-weight:600;letter-spacing:-.02em;color:var(--t);text-decoration:none}
+.nav-back{font-size:13px;color:var(--t3);text-decoration:none;transition:color .2s}.nav-back:hover{color:var(--t2)}
+
+/* HERO */
+.hero{padding:140px 48px 100px;max-width:1100px;margin:0 auto}
+.badge{display:inline-flex;padding:5px 14px;border:1px solid var(--b);border-radius:100px;font-size:11px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;font-family:var(--m);margin-bottom:32px}
+.h1{font-size:clamp(48px,5.5vw,80px);font-weight:600;letter-spacing:-.04em;line-height:1.03;margin-bottom:20px}
+.sub{font-size:17px;color:var(--t2);max-width:520px;line-height:1.68;font-weight:300}
+
+/* BROWSER */
+.browser{background:#111;border:1px solid var(--b2);border-radius:12px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.bar{height:36px;background:#1a1a1a;display:flex;align-items:center;padding:0 14px;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.url{flex:1;height:20px;background:rgba(255,255,255,.05);border-radius:4px;display:flex;align-items:center;padding:0 10px;margin:0 10px}
+.url span{font-size:11px;color:var(--t3);font-family:var(--m)}
+.bimg{width:100%;display:block;object-fit:cover}
+
+/* SECTIONS */
+.section{padding:100px 0;border-top:1px solid var(--b)}
+.inner{max-width:1100px;margin:0 auto;padding:0 48px}
+.eyebrow{font-size:11px;font-family:var(--m);color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.big{font-size:clamp(56px,7vw,100px);font-weight:700;letter-spacing:-.05em;line-height:.92}
+.big .num{color:var(--blue)}
+.big .ghost{color:rgba(255,255,255,.1)}
+.gsc-note{font-size:11px;font-family:var(--m);color:rgba(77,159,255,.4);margin-top:10px;letter-spacing:.06em}
+.kicker{font-size:16px;color:var(--t2);font-weight:300;line-height:1.65;max-width:580px;margin:24px 0 48px}
+.kicker strong{color:var(--t);font-weight:500}
+
+/* STATS */
+.stats{display:grid;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:14px;overflow:hidden;margin-bottom:48px}
+.stats.s3{grid-template-columns:1fr 1fr 1fr}
+.sbox{background:var(--bg);padding:32px 36px;position:relative;overflow:hidden}
+.sbox::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(77,159,255,.04),transparent 70%)}
+.sval{font-size:46px;font-weight:700;letter-spacing:-.05em;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.sval.blue{color:var(--blue)}.sval.w{color:var(--t)}.sval.grn{color:var(--grn)}
+.slbl{font-size:13px;color:var(--t3);line-height:1.5}
+.sper{font-size:11px;font-family:var(--m);color:var(--t3);margin-top:3px}
+
+/* CHART */
+.chart-card{background:var(--sur);border:1px solid var(--b);border-radius:14px;padding:36px 40px;margin-bottom:48px}
+.chart-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px}
+.chart-hd h3{font-size:14px;font-weight:500;margin-bottom:4px}
+.chart-hd p{font-size:12px;color:var(--t3);font-family:var(--m)}
+.chart-area{height:200px}
+svg.chart{width:100%;height:100%;overflow:visible}
+
+/* MOCK LABEL */
+.mock-label{font-size:11px;font-family:var(--m);color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+
+/* 2-COL BROWSER */
+.browser2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px}
+
+/* ECO */
+.eco-sep{font-size:12px;font-family:var(--m);color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;padding-top:12px;border-top:1px solid var(--b)}
+.eco-note{font-size:14px;color:var(--t3);line-height:1.6;max-width:600px;margin-bottom:24px}
+.eco3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-bottom:80px}
+.eco-c{background:var(--bg);padding:26px 28px;transition:background .2s}.eco-c:hover{background:var(--sur)}
+.eco-pill{display:inline-flex;padding:2px 8px;border:1px solid rgba(77,159,255,.18);border-radius:4px;font-size:10px;font-family:var(--m);color:rgba(77,159,255,.5);margin-bottom:12px}
+.eco-dom{font-size:12px;font-weight:500;color:var(--t2);margin-bottom:4px}
+.eco-val{font-size:28px;font-weight:600;letter-spacing:-.04em;margin-bottom:2px}
+.eco-sub{font-size:12px;color:var(--t3)}
+.eco-period{font-size:11px;font-family:var(--m);color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--b)}
+
+/* BREAK */
+.break{display:flex;align-items:center;gap:24px;padding:0 0 80px}
+.break::before,.break::after{content:'';flex:1;height:1px;background:var(--b)}
+.break span{font-size:11px;font-family:var(--m);color:var(--t3);letter-spacing:.08em;white-space:nowrap}
+
+/* BA */
+.ba{display:grid;grid-template-columns:1fr 48px 1fr;margin-bottom:40px;border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.ba-l{padding:36px;background:rgba(255,80,80,.04)}
+.ba-r{padding:36px;background:rgba(62,207,142,.06)}
+.ba-mid{display:flex;align-items:center;justify-content:center;background:var(--sur);border-left:1px solid var(--b);border-right:1px solid var(--b);font-size:18px;color:var(--t3)}
+.ba-per{font-size:11px;font-family:var(--m);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.ba-per.b{color:rgba(255,100,100,.6)}.ba-per.a{color:var(--grn)}
+.ba-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.ba-row:last-child{border-bottom:none}
+.ba-k{font-size:13px;color:var(--t3)}
+.ba-v{font-size:15px;font-weight:600}
+.ba-v.z{color:rgba(255,255,255,.18)}.ba-v.up{color:var(--grn)}
+
+/* KW */
+.kw-card{background:var(--sur);border:1px solid var(--b);border-radius:14px;padding:36px;margin-bottom:48px}
+.kw-spot{background:rgba(62,207,142,.05);border:1px solid rgba(62,207,142,.18);border-radius:10px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.kw-q{font-size:16px;font-weight:500;color:var(--grn)}
+.kw-badge{font-size:10px;font-family:var(--m);padding:4px 10px;background:rgba(62,207,142,.1);border-radius:4px;color:var(--grn)}
+.kw-tags{display:flex;flex-wrap:wrap;gap:8px}
+.kw-tag{padding:7px 13px;background:rgba(255,255,255,.03);border:1px solid var(--b);border-radius:6px;font-size:12px;color:var(--t3);font-family:var(--m)}
+.kw-tag span{color:var(--t2);margin-left:6px}
+
+/* BR SECTION */
+.br-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:48px}
+.br-headline{font-size:clamp(36px,4vw,60px);font-weight:600;letter-spacing:-.04em;line-height:1.05;margin-bottom:16px}
+.br-kicker{font-size:15px;color:var(--t2);font-weight:300;line-height:1.7}
+.br-kicker strong{color:var(--t);font-weight:500}
+.br-cards{display:flex;flex-direction:column;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden}
+.br-card{background:var(--bg);padding:22px 26px;display:flex;align-items:flex-start;gap:14px;transition:background .2s}
+.br-card:hover{background:var(--sur)}
+.br-ct{font-size:14px;font-weight:500;margin-bottom:3px}
+.br-cd{font-size:13px;color:var(--t3);line-height:1.6}
+.strategy-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-bottom:48px}
+.str-c{background:var(--bg);padding:28px 32px}
+.str-num{font-size:36px;font-weight:600;letter-spacing:-.04em;margin-bottom:6px}
+.str-lbl{font-size:11px;font-family:var(--m);color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.str-desc{font-size:13px;color:var(--t3);line-height:1.6}
+
+/* CTA */
+.cta{text-align:center;padding:120px 48px;border-top:1px solid var(--b)}
+.cta h2{font-size:clamp(40px,5vw,68px);font-weight:600;letter-spacing:-.04em;line-height:1.04;margin-bottom:20px}
+.cta p{font-size:16px;color:var(--t2);font-weight:300;max-width:420px;margin:0 auto 44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;background:var(--t);color:var(--bg);border-radius:8px;font-family:var(--f);font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s}.btn:hover{opacity:.85}
+
+footer{border-top:1px solid var(--b);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.flogo{font-size:14px;font-weight:600;letter-spacing:-.02em}
+.fcopy{font-size:12px;color:var(--t3);font-family:var(--m)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .75s,transform .75s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav,.inner,.hero{padding-left:24px;padding-right:24px}
+  .stats.s3,.eco3,.browser2,.br-top,.strategy-row{grid-template-columns:1fr}
+  .ba{grid-template-columns:1fr}.ba-mid{display:none}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo">torquemade</a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<div class="hero">
+  <div class="badge">Case Studies</div>
+  <h1 class="h1">Real clients.<br>Real numbers.</h1>
+  <p class="sub">Every metric below is pulled directly from Google Search Console. No estimates, no spin.</p>
+</div>
+
+<!-- ══ 01 SPRINT MOTORS ══ -->
+<div class="section">
+<div class="inner">
+
+  <p class="eyebrow reveal">01 — Sprint Motors · Bordeaux, France</p>
+
+  <div class="reveal">
+    <div class="big"><span class="num" id="bignum">0</span><br><span class="ghost">impressions.</span></div>
+    <p class="gsc-note">IN 16 MONTHS · GOOGLE SEARCH CONSOLE</p>
+  </div>
+
+  <p class="kicker reveal">A Bordeaux motorcycle dealer with <strong>zero online presence</strong> when we started. Today sprintmotors.com is approaching the million-impression milestone — pulling in <strong>over 1,000 organic visits per month</strong> and growing every month.</p>
+
+  <!-- SPRINT BROWSER - 2 screenshots side by side -->
+  <div class="mock-label reveal">sprintmotors.com — live site</div>
+  <div class="browser2 reveal">
+    <div class="browser">
+      <div class="bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#febc2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <div class="url"><span>sprintmotors.com</span></div>
+      </div>
+      <img class="bimg" src="image/sprint-hero.png" alt="Sprint Motors homepage" style="max-height:320px;object-position:top">
+    </div>
+    <div class="browser">
+      <div class="bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#febc2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <div class="url"><span>sprintmotors.com — catalogue</span></div>
+      </div>
+      <img class="bimg" src="image/sprint-catalogue.png" alt="Sprint Motors catalogue" style="max-height:320px;object-position:top">
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats s3 reveal">
+    <div class="sbox">
+      <div class="sval blue" id="imp-count">0</div>
+      <div class="slbl">Google impressions</div>
+      <div class="sper">Dec 2024 → Apr 2026</div>
+    </div>
+    <div class="sbox">
+      <div class="sval w">15,290</div>
+      <div class="slbl">Clicks from organic search</div>
+      <div class="sper">no paid ads</div>
+    </div>
+    <div class="sbox">
+      <div class="sval w">74,541</div>
+      <div class="slbl">Impressions in one month</div>
+      <div class="sper">peak — July 2025</div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-card reveal">
+    <div class="chart-hd">
+      <div><h3>Cumulative Google impressions — sprintmotors.com</h3><p>Dec 2024 → Apr 2026 · Google Search Console</p></div>
+      <div style="font-size:11px;font-family:var(--m);color:rgba(77,159,255,.5);padding:5px 10px;border:1px solid rgba(77,159,255,.18);border-radius:5px">→ 1M target</div>
+    </div>
+    <div class="chart-area"><svg id="sprintChart" class="chart" viewBox="0 0 900 200" preserveAspectRatio="none"></svg></div>
+  </div>
+
+  <!-- ECO -->
+  <div class="eco-sep reveal">Dealer ecosystem — 3 brand microsites built alongside Sprint Motors</div>
+  <p class="eco-note reveal">Sprint Motors carries multiple brands. We built a separate microsite for each — capturing search intent the main domain can't rank for. These are individual projects.</p>
+
+  <!-- ECO BROWSER - Cyclone + Voge side by side -->
+  <div class="browser2 reveal">
+    <div>
+      <div class="mock-label">cyclonebordeaux.fr</div>
+      <div class="browser">
+        <div class="bar">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+          <div class="url"><span>cyclonebordeaux.fr — catalogue</span></div>
+        </div>
+        <img class="bimg" src="image/cyclone-catalogue.png" alt="Cyclone Bordeaux" style="max-height:280px;object-position:top">
+      </div>
+    </div>
+    <div>
+      <div class="mock-label">vogebordeaux.fr — blog</div>
+      <div class="browser">
+        <div class="bar">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+          <div class="url"><span>vogebordeaux.fr/blogs</span></div>
+        </div>
+        <img class="bimg" src="image/voge-blog.png" alt="Voge Bordeaux blog" style="max-height:280px;object-position:top">
+      </div>
+    </div>
+  </div>
+
+  <div class="eco3 reveal">
+    <div class="eco-c">
+      <div class="eco-pill">3 months</div>
+      <div class="eco-dom">vogebordeaux.fr</div>
+      <div class="eco-val">7,948</div>
+      <div class="eco-sub">impressions · 208 clicks</div>
+      <div class="eco-period">Jan → Apr 2026</div>
+    </div>
+    <div class="eco-c">
+      <div class="eco-pill">4 weeks</div>
+      <div class="eco-dom">cyclonebordeaux.fr</div>
+      <div class="eco-val">1,765</div>
+      <div class="eco-sub">impressions · 118 clicks</div>
+      <div class="eco-period">Mar → Apr 2026</div>
+    </div>
+    <div class="eco-c">
+      <div class="eco-pill">4 weeks</div>
+      <div class="eco-dom">orcalbordeaux.fr</div>
+      <div class="eco-val">473</div>
+      <div class="eco-sub">impressions · 41 clicks</div>
+      <div class="eco-period">Mar → Apr 2026</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- BREAK -->
+<div style="max-width:1100px;margin:0 auto;padding:0 48px">
+  <div class="break"><span>02 — Motopassion 65</span></div>
+</div>
+
+<!-- ══ 02 MOTOPASSION ══ -->
+<div class="section" style="border-top:none;padding-top:0">
+<div class="inner">
+
+  <p class="eyebrow reveal">Motopassion 65 · Tarbes, Hautes-Pyrénées</p>
+  <h2 style="font-size:clamp(40px,4.5vw,72px);font-weight:600;letter-spacing:-.04em;line-height:1.05;margin-bottom:16px" class="reveal">From invisible<br>to top 5.</h2>
+  <p class="kicker reveal" style="margin-bottom:40px">Completely absent from Google before the new site. The jump in stats comes from two things working together: <strong>a clean Shopify rebuild</strong> and a <strong>blog content strategy targeting Pyrénées riders</strong> — articles about CFMOTO trails, VOGE models, and mountain riding that Google actually finds. Result: <strong>top 5 for "concessionnaire moto Pyrénées"</strong> and 171 new keywords in 30 days.</p>
+
+  <!-- 2 browser screenshots side by side -->
+  <div class="browser2 reveal">
+    <div>
+      <div class="mock-label">motopassion65.com — catalogue CF Moto</div>
+      <div class="browser">
+        <div class="bar">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+          <div class="url"><span>motopassion65.com</span></div>
+        </div>
+        <img class="bimg" src="image/mp65-catalogue.png" alt="Motopassion 65 catalogue" style="max-height:300px;object-position:top">
+      </div>
+    </div>
+    <div>
+      <div class="mock-label">motopassion65.com — blog articles</div>
+      <div class="browser">
+        <div class="bar">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+          <div class="url"><span>motopassion65.com/blogs/blog</span></div>
+        </div>
+        <img class="bimg" src="image/mp65-blog.png" alt="Motopassion 65 blog" style="max-height:300px;object-position:top">
+      </div>
+    </div>
+  </div>
+
+  <!-- BA -->
+  <div class="ba reveal">
+    <div class="ba-l">
+      <p class="ba-per b">Before — Feb → Mar 2026</p>
+      <div class="ba-row"><span class="ba-k">Impressions</span><span class="ba-v z">0</span></div>
+      <div class="ba-row"><span class="ba-k">Clicks</span><span class="ba-v z">0</span></div>
+      <div class="ba-row"><span class="ba-k">Keywords ranking</span><span class="ba-v z">0</span></div>
+      <div class="ba-row"><span class="ba-k">"Concessionnaire moto Pyrénées"</span><span class="ba-v z">Not found</span></div>
+    </div>
+    <div class="ba-mid">→</div>
+    <div class="ba-r">
+      <p class="ba-per a">After — 30 days post-launch</p>
+      <div class="ba-row"><span class="ba-k">Impressions</span><span class="ba-v up" id="mp-imp">0</span></div>
+      <div class="ba-row"><span class="ba-k">Clicks</span><span class="ba-v up" id="mp-clk">0</span></div>
+      <div class="ba-row"><span class="ba-k">Keywords ranking</span><span class="ba-v up">171</span></div>
+      <div class="ba-row"><span class="ba-k">"Concessionnaire moto Pyrénées"</span><span class="ba-v up">Top 5 ✓</span></div>
+    </div>
+  </div>
+
+  <!-- KW -->
+  <div class="kw-card reveal">
+    <div style="font-size:14px;font-weight:500;margin-bottom:4px">Ranking keywords — 30 days after launch</div>
+    <div style="font-size:12px;color:var(--t3);font-family:var(--m);margin-bottom:20px">Every query below had 0 impressions before the new site</div>
+    <div class="kw-spot">
+      <div>
+        <div style="font-size:10px;font-family:var(--m);color:var(--grn);letter-spacing:.06em;margin-bottom:4px">TOP KEYWORD</div>
+        <div class="kw-q">concessionnaire moto pyrénées</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:2px">Was invisible. Now top 5.</div>
+      </div>
+      <div class="kw-badge">TOP 5</div>
+    </div>
+    <div class="kw-tags">
+      <div class="kw-tag">moto passion 65<span>#2</span></div>
+      <div class="kw-tag">moto passion pouzac<span>#1.7</span></div>
+      <div class="kw-tag">cf moto 65<span>#2</span></div>
+      <div class="kw-tag">concessionnaire voge autour de moi<span>#10</span></div>
+      <div class="kw-tag">voge pau<span>#8.7</span></div>
+      <div class="kw-tag">concessionnaire moto tarbes<span>#8</span></div>
+      <div class="kw-tag" style="color:var(--t3)">+ 165 more queries</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- BREAK -->
+<div style="max-width:1100px;margin:0 auto;padding:0 48px">
+  <div class="break"><span>03 — Bordeaux Ride</span></div>
+</div>
+
+<!-- ══ 03 BORDEAUX RIDE ══ -->
+<div class="section" style="border-top:none;padding-top:0">
+<div class="inner">
+
+  <p class="eyebrow reveal">Bordeaux Ride · Bordeaux, France</p>
+
+  <div class="br-top reveal">
+    <div>
+      <h2 class="br-headline">The long game.</h2>
+      <p class="br-kicker">Premium private chauffeur competing against Uber and Bolt. We built a <strong>custom booking system</strong> and a <strong>59-article SEO content strategy</strong> — airport transfers, wine tours, business travel. The site is 2 months old. The compounding starts at month 6.</p>
+    </div>
+    <div class="br-cards">
+      <div class="br-card">
+        <div style="font-size:18px;flex-shrink:0">⚙️</div>
+        <div><div class="br-ct">Custom booking system</div><div class="br-cd">Full reservation flow on Shopify. Service, date, passengers, requests. Direct bookings, zero commission.</div></div>
+      </div>
+      <div class="br-card">
+        <div style="font-size:18px;flex-shrink:0">✍️</div>
+        <div><div class="br-ct">59 articles published</div><div class="br-cd">Each article captures a different search segment permanently — without any ongoing ad spend.</div></div>
+      </div>
+      <div class="br-card">
+        <div style="font-size:18px;flex-shrink:0">📈</div>
+        <div><div class="br-ct">Compounding from month 6</div><div class="br-cd">2 months old. The curve starts around month 6 — this is the foundation being built.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 browser screenshots -->
+  <div class="mock-label reveal">bordeauxride.com — live site</div>
+  <div class="browser2 reveal">
+    <div class="browser">
+      <div class="bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#febc2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <div class="url"><span>bordeauxride.com</span></div>
+      </div>
+      <img class="bimg" src="image/br-hero.png" alt="Bordeaux Ride homepage" style="max-height:300px;object-position:top">
+    </div>
+    <div class="browser">
+      <div class="bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#febc2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <div class="url"><span>bordeauxride.com/blogs/vtc-bordeaux</span></div>
+      </div>
+      <img class="bimg" src="image/br-blog.png" alt="Bordeaux Ride blog" style="max-height:300px;object-position:top">
+    </div>
+  </div>
+
+  <!-- Blog map screenshot full width -->
+  <div class="mock-label reveal">Interactive service area map — built on Shopify</div>
+  <div class="browser reveal">
+    <div class="bar">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+      <div class="url"><span>bordeauxride.com — zone de couverture</span></div>
+    </div>
+    <img class="bimg" src="image/br-map.png" alt="Bordeaux Ride coverage map" style="max-height:340px;object-fit:cover;object-position:center">
+  </div>
+
+  <!-- Strategy numbers -->
+  <div class="strategy-row reveal" style="margin-top:40px">
+    <div class="str-c">
+      <div class="str-lbl">Content published</div>
+      <div class="str-num">59</div>
+      <div class="str-desc">Articles live. Each one targeting a specific search intent — airport, wine tours, events, business travel.</div>
+    </div>
+    <div class="str-c">
+      <div class="str-lbl">Topics covered</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+        <div style="font-size:13px;color:var(--t2)">→ Airport transfers (Mérignac)</div>
+        <div style="font-size:13px;color:var(--t2)">→ Bordeaux wine country tours</div>
+        <div style="font-size:13px;color:var(--t2)">→ Business & corporate travel</div>
+        <div style="font-size:13px;color:var(--t2)">→ Weddings & private events</div>
+        <div style="font-size:13px;color:var(--t2)">→ Tourist attractions & day trips</div>
+      </div>
+    </div>
+    <div class="str-c">
+      <div class="str-lbl">Why it works</div>
+      <div class="str-desc" style="margin-top:12px">Unlike ads that stop when you stop paying, every article published is a permanent traffic asset. Zero ongoing cost. Month 6 is when the compounding begins to show — and it doesn't stop.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta reveal">
+  <h2>Your dealership.<br>Same results.</h2>
+  <p>Book a free 15-minute call. No pitch, no pressure.</p>
+  <a href="/#contact" class="btn">Get started →</a>
+</div>
+
+<footer>
+  <span class="flogo">torquemade</span>
+  <span class="fcopy">© 2025 torquemade.com</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function counter(el,target,dur=2000){
+  let s=null;
+  const fn=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,4);
+  el.textContent=Math.round(e*target).toLocaleString();if(p<1)requestAnimationFrame(fn);};
+  requestAnimationFrame(fn);
+}
+new IntersectionObserver(e=>{if(e[0].isIntersecting){
+  counter(document.getElementById('bignum'),791961,2800);
+  counter(document.getElementById('imp-count'),791961,2800);
+}},{threshold:0.3}).observe(document.querySelector('.big'));
+new IntersectionObserver(e=>{if(e[0].isIntersecting){
+  counter(document.getElementById('mp-imp'),1240,1500);
+  counter(document.getElementById('mp-clk'),63,1200);
+}},{threshold:0.4}).observe(document.querySelector('.ba'));
+
+// CHART
+(function(){
+  const svg=document.getElementById('sprintChart');if(!svg)return;
+  const data=[
+    {m:'Dec 24',v:8329},{m:'Jan',v:43591},{m:'Feb',v:80187},{m:'Mar',v:128294},
+    {m:'Apr',v:179554},{m:'May',v:238778},{m:'Jun',v:305813},{m:'Jul',v:380354},
+    {m:'Aug',v:453392},{m:'Sep',v:517959},{m:'Oct',v:561237},{m:'Nov',v:599692},
+    {m:'Dec 25',v:635071},{m:'Jan 26',v:679682},{m:'Feb 26',v:721949},
+    {m:'Mar 26',v:768083},{m:'Apr 26',v:791961}
+  ];
+  const W=900,H=200,PL=8,PR=8,PT=14,PB=30,cw=W-PL-PR,ch=H-PT-PB,max=1000000;
+  const xs=data.map((_,i)=>PL+i*(cw/(data.length-1)));
+  const ys=data.map(d=>PT+ch-(d.v/max)*ch);
+  const ns='http://www.w3.org/2000/svg';
+  const el=(t,a={})=>{const e=document.createElementNS(ns,t);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));return e;};
+  const defs=el('defs');
+  const gr=el('linearGradient',{id:'lg',x1:0,y1:0,x2:0,y2:1});
+  [[0,'rgba(77,159,255,0.3)'],[1,'rgba(77,159,255,0)']].forEach(([o,c])=>{gr.appendChild(el('stop',{offset:o,'stop-color':c}));});
+  defs.appendChild(gr);svg.appendChild(defs);
+  [0,250000,500000,750000,1000000].forEach(v=>{
+    const y=PT+ch-(v/max)*ch;
+    svg.appendChild(el('line',{x1:PL,x2:W-PR,y1:y,y2:y,stroke:v===1000000?'rgba(77,159,255,0.2)':'rgba(255,255,255,0.04)','stroke-width':1,'stroke-dasharray':v===1000000?'4 4':''}));
+    const t=el('text',{x:PL,y:y-4,fill:v===1000000?'rgba(77,159,255,0.35)':'rgba(255,255,255,0.18)','font-size':9,'font-family':'monospace'});
+    t.textContent=v===0?'0':v>=1000000?'1M target':v/1000+'K';svg.appendChild(t);
+  });
+  let aD=`M ${xs[0]} ${PT+ch}`;xs.forEach((x,i)=>aD+=` L ${x} ${ys[i]}`);aD+=` L ${xs[xs.length-1]} ${PT+ch} Z`;
+  svg.appendChild(el('path',{d:aD,fill:'url(#lg)'}));
+  let lD=`M ${xs[0]} ${ys[0]}`;xs.forEach((x,i)=>{if(i>0)lD+=` L ${x} ${ys[i]}`;});
+  const line=el('path',{d:lD,fill:'none',stroke:'#4d9fff','stroke-width':2});
+  line.style.cssText='stroke-dasharray:2000;stroke-dashoffset:2000;transition:stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)';
+  svg.appendChild(line);
+  data.forEach((d,i)=>{if(i%4!==0&&i!==data.length-1)return;const t=el('text',{x:xs[i],y:H-6,fill:'rgba(255,255,255,0.2)','font-size':8,'font-family':'monospace','text-anchor':'middle'});t.textContent=d.m;svg.appendChild(t);});
+  const dots=xs.map((x,i)=>{const c=el('circle',{cx:x,cy:ys[i],r:3.5,fill:'#4d9fff',opacity:0});c.style.transition=`opacity .2s ${i*.06}s`;svg.appendChild(c);return c;});
+  new IntersectionObserver(e=>{if(e[0].isIntersecting){line.style.strokeDashoffset='0';setTimeout(()=>dots.forEach(d=>d.setAttribute('opacity','0.85')),300);}},{threshold:0.3}).observe(svg);
+})();
+</script>
+</body>
+</html>
