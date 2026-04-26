@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Torquemade — Shopify Websites for Motorcycle Dealerships</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -652,6 +651,42 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+
+  /* ── WHY IT WORKS ── */
+  .why-card {
+    background: var(--bg);
+    padding: 36px 40px 40px;
+    transition: background 0.2s;
+  }
+  .why-card:hover { background: var(--surface); }
+  .fig-label {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .why-illustration {
+    height: 140px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .why-title {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .why-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
@@ -677,6 +712,7 @@
     <li><a href="/case-studies">Case Studies</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#reviews">Reviews</a></li>
   </ul>
   <div class="nav-cta">
     <a href="#contact" class="btn-primary">Book a call →</a>
@@ -701,7 +737,7 @@
 </section>
 
 <!-- STATS -->
-<div class="stats" id="stats">
+<div class="stats" id="stats" style="grid-template-columns:repeat(3,1fr)">
   <div class="stat-item">
     <div class="stat-num">+340%</div>
     <div class="stat-label">Average organic traffic increase<br>in first 4 months</div>
@@ -709,10 +745,6 @@
   <div class="stat-item">
     <div class="stat-num">10</div>
     <div class="stat-label">Business days<br>from kickoff to live</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">6</div>
-    <div class="stat-label">Markets across<br>US &amp; Europe</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">100%</div>
@@ -780,6 +812,187 @@
           </div>
         </div>
       </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY IT WORKS -->
+<section id="why" style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">How it works</p>
+    <h2 class="section-title reveal">Built to generate leads,<br>not just look good.</h2>
+    <p class="section-sub reveal">Every element of your site is designed around one goal: turning visitors into customers walking into your dealership.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:80px">
+
+      <!-- FIG 1 — Full catalogue -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.1</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Stacked catalog cards -->
+            <rect x="30" y="80" width="140" height="44" rx="4" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+            <rect x="24" y="72" width="140" height="44" rx="4" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <rect x="18" y="64" width="140" height="44" rx="4" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+            <rect x="12" y="56" width="140" height="44" rx="4" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <!-- Top card content -->
+            <rect x="18" y="62" width="36" height="28" rx="2" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+            <ellipse cx="36" cy="74" rx="10" ry="6" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <line x1="60" y1="67" x2="100" y2="67" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+            <line x1="60" y1="73" x2="90" y2="73" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <rect x="60" y="79" width="28" height="7" rx="2" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <!-- Price tag -->
+            <line x1="110" y1="67" x2="142" y2="67" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <line x1="110" y1="73" x2="135" y2="73" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Complete model catalogue</h3>
+        <p class="why-desc">Every bike you carry — with photos, specs, and pricing. Visitors find exactly what they're looking for before they even call.</p>
+      </div>
+
+      <!-- FIG 2 — One-click form -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.2</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Product card -->
+            <rect x="30" y="20" width="140" height="100" rx="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <rect x="40" y="30" width="120" height="48" rx="3" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <ellipse cx="100" cy="54" rx="22" ry="13" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <!-- CTA button highlighted -->
+            <rect x="40" y="88" width="120" height="22" rx="4" stroke="rgba(255,255,255,0.9)" stroke-width="1.2"/>
+            <line x1="72" y1="99" x2="128" y2="99" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+            <!-- Cursor -->
+            <path d="M148 104 L154 116 L156 110 L162 112 Z" stroke="rgba(255,255,255,0.9)" stroke-width="0.9" fill="rgba(255,255,255,0.1)"/>
+            <!-- Click ripple -->
+            <circle cx="154" cy="110" r="6" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <circle cx="154" cy="110" r="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/>
+          </svg>
+        </div>
+        <h3 class="why-title">One click — test ride request</h3>
+        <p class="why-desc">Every model page has a built-in interest form. A visitor who wants that bike tells you in seconds — no phone call needed.</p>
+      </div>
+
+      <!-- FIG 3 — Direct to inbox -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.3</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Form card left -->
+            <rect x="14" y="44" width="60" height="52" rx="4" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <line x1="22" y1="56" x2="66" y2="56" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <line x1="22" y1="63" x2="58" y2="63" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+            <line x1="22" y1="70" x2="62" y2="70" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+            <rect x="22" y="77" width="44" height="10" rx="2" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <!-- Arrow -->
+            <line x1="80" y1="70" x2="116" y2="70" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <polyline points="110,64 118,70 110,76" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Envelope right -->
+            <rect x="122" y="44" width="66" height="52" rx="4" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+            <polyline points="122,48 155,72 188,48" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Notification dot -->
+            <circle cx="182" cy="44" r="6" fill="#060606" stroke="rgba(255,255,255,0.8)" stroke-width="0.8"/>
+            <line x1="182" y1="40" x2="182" y2="44" stroke="white" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="182" cy="46" r="0.8" fill="white"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Leads straight to your inbox</h3>
+        <p class="why-desc">The moment someone submits interest, you receive their name, contact, and the exact model they want. Ready to follow up.</p>
+      </div>
+
+      <!-- FIG 4 — Local SEO -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.4</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Map pin -->
+            <path d="M100 28 C88 28 78 38 78 50 C78 66 100 90 100 90 C100 90 122 66 122 50 C122 38 112 28 100 28 Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+            <circle cx="100" cy="50" r="8" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <!-- Rings -->
+            <ellipse cx="100" cy="98" rx="20" ry="6" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+            <ellipse cx="100" cy="98" rx="36" ry="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+            <!-- Keyword tags -->
+            <rect x="10" y="30" width="52" height="14" rx="3" stroke="rgba(255,255,255,0.3)" stroke-width="0.7"/>
+            <line x1="18" y1="37" x2="54" y2="37" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <rect x="140" y="25" width="48" height="14" rx="3" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
+            <line x1="148" y1="32" x2="180" y2="32" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/>
+            <rect x="148" y="55" width="44" height="14" rx="3" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <line x1="156" y1="62" x2="184" y2="62" stroke="rgba(255,255,255,0.15)" stroke-width="0.7"/>
+            <!-- Connector lines -->
+            <line x1="62" y1="37" x2="82" y2="46" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" stroke-dasharray="3 3"/>
+            <line x1="140" y1="32" x2="118" y2="44" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Local SEO + organic traffic</h3>
+        <p class="why-desc">Ranked for "motorcycle dealer [your city]" and broader queries — technical questions, model comparisons, riding guides — that bring in buyers who are already researching.</p>
+      </div>
+
+      <!-- FIG 5 — AI search -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.5</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Center node — your site -->
+            <circle cx="100" cy="70" r="18" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+            <line x1="92" y1="70" x2="108" y2="70" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <line x1="100" y1="62" x2="100" y2="78" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <!-- AI nodes -->
+            <circle cx="32" cy="38" r="12" stroke="rgba(255,255,255,0.35)" stroke-width="0.9"/>
+            <line x1="26" y1="38" x2="38" y2="38" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <line x1="32" y1="32" x2="32" y2="44" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <circle cx="168" cy="38" r="12" stroke="rgba(255,255,255,0.35)" stroke-width="0.9"/>
+            <line x1="162" y1="38" x2="174" y2="38" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <line x1="168" y1="32" x2="168" y2="44" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <circle cx="32" cy="102" r="12" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+            <line x1="26" y1="102" x2="38" y2="102" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <line x1="32" y1="96" x2="32" y2="108" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <circle cx="168" cy="102" r="12" stroke="rgba(255,255,255,0.25)" stroke-width="0.9"/>
+            <line x1="162" y1="102" x2="174" y2="102" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+            <line x1="168" y1="96" x2="168" y2="108" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+            <!-- Connection lines -->
+            <line x1="44" y1="45" x2="85" y2="60" stroke="rgba(255,255,255,0.2)" stroke-width="0.7" stroke-dasharray="4 3"/>
+            <line x1="156" y1="45" x2="115" y2="60" stroke="rgba(255,255,255,0.2)" stroke-width="0.7" stroke-dasharray="4 3"/>
+            <line x1="44" y1="96" x2="85" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="0.7" stroke-dasharray="4 3"/>
+            <line x1="156" y1="96" x2="115" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="0.7" stroke-dasharray="4 3"/>
+            <!-- Labels -->
+            <text x="32" y="22" font-family="'Geist Mono',monospace" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle">ChatGPT</text>
+            <text x="168" y="22" font-family="'Geist Mono',monospace" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle">Claude</text>
+            <text x="32" y="124" font-family="'Geist Mono',monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Grok</text>
+            <text x="168" y="124" font-family="'Geist Mono',monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">Perplexity</text>
+          </svg>
+        </div>
+        <h3 class="why-title">Visible on AI search</h3>
+        <p class="why-desc">When someone asks ChatGPT, Claude or Grok for the best motorcycle dealer near them, your site is structured to appear in those answers.</p>
+      </div>
+
+      <!-- FIG 6 — Used bikes self-managed -->
+      <div class="why-card reveal">
+        <p class="fig-label">FIG 0.6</p>
+        <div class="why-illustration">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <!-- Stacked screens / layers -->
+            <rect x="50" y="86" width="100" height="34" rx="4" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+            <rect x="42" y="76" width="100" height="34" rx="4" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <rect x="34" y="66" width="100" height="34" rx="4" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+            <rect x="26" y="56" width="100" height="34" rx="4" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <!-- Top screen content — admin panel -->
+            <line x1="34" y1="64" x2="118" y2="64" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <rect x="32" y="68" width="20" height="14" rx="2" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
+            <line x1="58" y1="70" x2="90" y2="70" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <line x1="58" y1="75" x2="80" y2="75" stroke="rgba(255,255,255,0.15)" stroke-width="0.7"/>
+            <!-- + add button -->
+            <circle cx="148" cy="44" r="14" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+            <line x1="142" y1="44" x2="154" y2="44" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="148" y1="38" x2="148" y2="50" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Arrow connecting button to stack -->
+            <line x1="140" y1="54" x2="120" y2="62" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <h3 class="why-title">You manage used bikes yourself</h3>
+        <p class="why-desc">Add, update, or remove used inventory in 2 minutes from your phone. No developer needed, no waiting. Tutorial videos included.</p>
+      </div>
 
     </div>
   </div>
@@ -889,7 +1102,7 @@
 <!-- TESTIMONIALS -->
 <section style="border-top: 1px solid var(--border)">
   <div class="section-inner">
-    <p class="section-label reveal">What dealers say</p>
+    <p class="section-label reveal" id="reviews">What dealers say</p>
     <h2 class="section-title reveal">Real dealerships.<br>Real results.</h2>
 
     <div class="testimonial-grid">
