@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TorqueMade — Websites for Motorcycle Dealerships</title>
+<title>Torquemade — Shopify Websites for Motorcycle Dealerships</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -688,6 +687,49 @@
     font-weight: 300;
   }
 
+
+  /* ── FAQ ── */
+  .faq-list { display: flex; flex-direction: column; max-width: 720px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: left;
+    gap: 20px;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--text-2); }
+  .faq-icon {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-3);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--text-2); }
+  .faq-a {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.75;
+    font-weight: 300;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 22px; }
+
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
@@ -707,14 +749,14 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">TorqueMade</a>
+  <a href="#" class="nav-logo">torquemade</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="/case-studies">Case Studies</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#reviews">Reviews</a></li>
-    <li><a href="/about">About</a></li>
   </ul>
   <div class="nav-cta">
     <a href="#contact" class="btn-primary">Book a call →</a>
@@ -792,7 +834,7 @@
       <a class="work-card" href="/case-studies" style="text-decoration:none;color:inherit">
         <div class="work-arrow">↗</div>
         <div class="work-card-img" style="overflow:hidden">
-          <img src="image/mp65-catalogue.png" style="width:100%;height:100%;object-fit:cover;object-position:top" alt="Motopassion 65">
+          <img src="image/mp65-blog.png" style="width:100%;height:100%;object-fit:cover;object-position:top" alt="Motopassion 65">
         </div>
         <div class="work-name">Motopassion 65</div>
         <div class="work-meta">
@@ -1111,10 +1153,79 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section style="border-top: 1px solid var(--border)">
+
+<!-- FAQ -->
+<section id="faq" style="border-top: 1px solid var(--border)">
   <div class="section-inner">
-    <p class="section-label reveal" id="reviews">What dealers say</p>
+    <p class="section-label reveal">FAQ</p>
+    <h2 class="section-title reveal">Common questions.</h2>
+
+    <div class="faq-list reveal" style="margin-top:56px">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you work with US dealerships?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Yes — that's the primary market. I work remotely with dealerships across the US. Everything is handled online: kickoff call, design review, launch. Time zone has never been an issue.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>I already have a website. Can you rebuild it?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Absolutely. Most of my clients come in with an outdated site or no site at all. I audit what you have, keep what's working, and rebuild the rest on Shopify with a proper SEO foundation from day one.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How long does it take?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">10 business days from kickoff to live. That includes a design draft on day 4, two rounds of revisions, and a handover call on launch day. Larger projects with extensive catalogues may take a few days more — I'll tell you upfront.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Do I need to know anything technical?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Nothing at all. Shopify is built for non-technical users. Adding a used bike takes 2 minutes — I'll send you a tutorial video after launch so your team can handle it independently from day one.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What does Shopify cost on top of your fee?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">If you don't need an online checkout (most dealerships don't — they sell in person), Shopify costs $10/month with self-checkout disabled. If you want to sell accessories or parts online, the standard plan is $39/month. Both are billed directly by Shopify, separate from my fee.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What happens after the site is live?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">You get the site, the Shopify admin, and full ownership. From there, you can manage it yourself or keep me on a monthly maintenance plan — I review your analytics every month, make data-driven tweaks, and handle minor updates. No obligation either way.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I pay?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">50% upfront to start the project, 50% on launch day. Payment via Stripe — card or bank transfer. Simple, no surprises.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews" style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">What dealers say</p>
     <h2 class="section-title reveal">Real dealerships.<br>Real results.</h2>
 
     <div class="testimonial-grid">
@@ -1163,7 +1274,7 @@
       <form id="contactForm" style="display: flex; flex-direction: column; gap: 16px;">
         <input type="hidden" name="access_key" value="2a5772a7-dd95-4223-bff9-a06734697d94">
         <input type="hidden" name="subject" value="New inquiry — torquemade.com">
-        <input type="hidden" name="redirect" value="https://torquemade.com">
+        <input type="hidden" name="redirect" value="https://torquemade.com/case-studies">
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -1246,6 +1357,14 @@
 </footer>
 
 <script>
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
   });
