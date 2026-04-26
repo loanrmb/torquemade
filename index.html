@@ -270,7 +270,7 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .stat-item {
     padding: 48px 40px;
@@ -754,7 +754,10 @@
     .btn-ghost { padding: 10px 18px; font-size: 13px; }
 
     /* STATS BAND */
-    .stats { grid-template-columns: repeat(2, 1fr) !important; }
+    .stats { grid-template-columns: repeat(3, 1fr) !important; }
+    .stat-item { padding: 18px 12px; }
+    .stat-num { font-size: 20px; }
+    .stat-label { font-size: 10px; letter-spacing: 0; line-height:1.4; }
     .stat-item { padding: 28px 20px; }
     .stat-num { font-size: 32px; }
     .stat-label { font-size: 12px; }
@@ -813,7 +816,7 @@
   }
 
   @media (max-width: 480px) {
-    .stats { grid-template-columns: 1fr !important; }
+    .stats { grid-template-columns: repeat(3, 1fr) !important; }
     .hero-title { font-size: clamp(36px, 12vw, 52px); }
     .section-title { font-size: clamp(26px, 9vw, 38px); }
   }
@@ -882,7 +885,7 @@
 </section>
 
 <!-- STATS -->
-<div class="stats" id="stats" style="grid-template-columns:repeat(3,1fr)">
+<div style="max-width:1100px;margin:0 auto;padding:0 48px"><div class="stats" id="stats" style="grid-template-columns:repeat(3,1fr)">
   <div class="stat-item">
     <div class="stat-num">+340%</div>
     <div class="stat-label">Average organic traffic increase<br>in first 4 months</div>
@@ -895,6 +898,7 @@
     <div class="stat-num">100%</div>
     <div class="stat-label">Moto &amp; powersports<br>focused</div>
   </div>
+</div>
 </div>
 
 <!-- WORK -->
