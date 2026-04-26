@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Torquemade</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060606;--sur:#0e0e0e;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.13);
+  --t:#fff;--t2:rgba(255,255,255,.52);--t3:rgba(255,255,255,.26);
+  --f:'Geist',sans-serif;--m:'Geist Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font-family:var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid transparent;transition:all .3s}
+nav.scrolled{border-color:var(--b);background:rgba(6,6,6,.92);backdrop-filter:blur(12px)}
+.nav-logo{font-size:15px;font-weight:600;letter-spacing:-.02em;color:var(--t);text-decoration:none}
+.nav-back{font-size:13px;color:var(--t3);text-decoration:none;transition:color .2s}.nav-back:hover{color:var(--t2)}
+
+.wrap{max-width:720px;margin:0 auto;padding:0 48px}
+
+/* HERO */
+.hero{padding:140px 0 80px}
+.eyebrow{font-size:11px;font-family:var(--m);color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+.hero-name{font-size:clamp(52px,6vw,88px);font-weight:600;letter-spacing:-.05em;line-height:.95;margin-bottom:32px}
+.hero-name .dim{color:rgba(255,255,255,.18)}
+.hero-lead{font-size:20px;color:var(--t2);line-height:1.7;font-weight:300;max-width:600px}
+.hero-lead strong{color:var(--t);font-weight:500}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--b);margin:64px 0}
+
+/* BODY TEXT */
+.body-text{font-size:16px;color:var(--t2);line-height:1.85;font-weight:300;margin-bottom:28px}
+.body-text strong{color:var(--t);font-weight:500}
+.body-text a{color:var(--t);text-decoration:underline;text-decoration-color:rgba(255,255,255,.25);transition:text-decoration-color .2s}
+.body-text a:hover{text-decoration-color:rgba(255,255,255,.7)}
+
+/* CALLOUT */
+.callout{padding:28px 32px;border:1px solid var(--b);border-radius:10px;margin:40px 0;background:var(--sur)}
+.callout p{font-size:15px;color:var(--t2);line-height:1.75;font-weight:300}
+.callout p strong{color:var(--t);font-weight:500}
+
+/* STAT ROW */
+.stat-row{display:flex;gap:48px;margin:48px 0}
+.st-num{font-size:36px;font-weight:600;letter-spacing:-.04em;margin-bottom:4px}
+.st-lbl{font-size:13px;color:var(--t3)}
+
+/* CTA */
+.cta-block{padding:80px 0 120px;text-align:center}
+.cta-block h2{font-size:clamp(36px,4vw,56px);font-weight:600;letter-spacing:-.04em;line-height:1.05;margin-bottom:16px}
+.cta-block p{font-size:16px;color:var(--t2);font-weight:300;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--t);color:var(--bg);border-radius:8px;font-family:var(--f);font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s}.btn:hover{opacity:.85}
+
+footer{border-top:1px solid var(--b);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.flogo{font-size:14px;font-weight:600;letter-spacing:-.02em}
+.fcopy{font-size:12px;color:var(--t3);font-family:var(--m)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .75s,transform .75s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav,.wrap{padding-left:24px;padding-right:24px}
+  .stat-row{flex-wrap:wrap;gap:32px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo">torquemade</a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow reveal">About</p>
+    <h1 class="hero-name reveal">Hey, I'm Loan.<br><span class="dim">I build websites<br>for moto dealers.</span></h1>
+    <p class="hero-lead reveal">Based in Europe, 24 years old. I've been building websites for a few years across different niches — sneaker shops, e-commerce, lifestyle brands. Then I found motorcycles, and I haven't looked back.</p>
+  </div>
+
+  <hr class="divider">
+
+  <p class="body-text reveal">I got into the moto market by accident. I was looking for a new niche to apply what I'd already built — a process for Shopify sites that actually rank on Google and convert visitors into customers. I started researching motorcycle dealerships online and <strong>what I found was surprising.</strong></p>
+
+  <p class="body-text reveal">Most dealers had either no website, a ten-year-old WordPress site nobody could find, or a generic template with zero SEO and no real way for customers to show interest in a bike. The gap between what exists and what's possible was — and still is — massive.</p>
+
+  <div class="callout reveal">
+    <p>The basics that every modern retail business takes for granted — <strong>a full catalogue, a one-click inquiry form, local search visibility, AI search presence</strong> — most motorcycle dealers simply don't have them. That's the problem I decided to solve.</p>
+  </div>
+
+  <p class="body-text reveal">I'm more of a car guy, honestly. I create automotive lifestyle content on social media and I live and breathe that world. But the moto culture is close enough that I get it — the brands, the buying process, the relationship between a dealer and a customer. <strong>I understand who's walking into your shop and what they searched for before they got there.</strong></p>
+
+  <p class="body-text reveal">I have my 125cc license and I'm working on getting my full moto license — first bike incoming. I'm building this business and this community at the same time. That's not a weakness, it's context: I'm not a 50-year-old Harley guy who learned web design. I'm a developer who discovered moto.</p>
+
+  <hr class="divider">
+
+  <div class="stat-row reveal">
+    <div>
+      <div class="st-num">791K</div>
+      <div class="st-lbl">Google impressions generated<br>for one client in 16 months</div>
+    </div>
+    <div>
+      <div class="st-num">5+</div>
+      <div class="st-lbl">Dealer sites live<br>across France</div>
+    </div>
+    <div>
+      <div class="st-num">30 days</div>
+      <div class="st-lbl">From zero to 171 keywords<br>ranked for Motopassion 65</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="body-text reveal">Every site I build is on Shopify — not because it's trendy, but because it's the right tool. It scales with you. You can add an online store for accessories the day you need it. You can manage your used bike inventory yourself in two minutes. And it costs less per month than a tank of gas.</p>
+
+  <p class="body-text reveal">The results I get come from one thing: <strong>I treat every site like a lead generation machine, not a brochure.</strong> That means SEO from day one, conversion-focused design, and monthly analytics reviews that actually drive decisions — not reports that sit in your inbox unread.</p>
+
+  <p class="body-text reveal">If you want to see what that looks like in practice, <a href="/case-studies">the case studies are here</a>.</p>
+
+  <div class="cta-block reveal">
+    <h2>Let's talk about<br>your dealership.</h2>
+    <p>Free 15-minute call. No pitch, no pressure.</p>
+    <a href="/#contact" class="btn">Get in touch →</a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="flogo">torquemade</span>
+  <span class="fcopy">© 2025 torquemade.com</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
