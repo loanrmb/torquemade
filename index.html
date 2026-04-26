@@ -742,7 +742,8 @@
     /* NAV */
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .nav-cta .btn-primary { padding: 7px 14px; font-size: 12px; }
+    #menuBtn { display: block !important; }
+    #navCta { display: none; }
 
     /* HERO */
     .hero { padding: 90px 20px 56px; text-align: center; }
@@ -820,6 +821,23 @@
 </head>
 <body>
 
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" style="display:none;position:fixed;inset:0;background:#060606;z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:0">
+  <div style="position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <a href="/" style="font-size:15px;font-weight:600;letter-spacing:-.02em;color:white;text-decoration:none">TorqueMade</a>
+    <button onclick="toggleMenu()" style="background:none;border:none;cursor:pointer;padding:8px;color:white;font-size:22px;line-height:1">&times;</button>
+  </div>
+  <nav style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;border-top:1px solid rgba(255,255,255,.07);margin-top:60px">
+    <a href="/about" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">About</a>
+    <a href="#work" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Work</a>
+    <a href="/case-studies" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Case Studies</a>
+    <a href="#services" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Services</a>
+    <a href="#faq" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">FAQ</a>
+    <a href="#contact" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;letter-spacing:-.02em">Contact</a>
+  </nav>
+</div>
+
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 
@@ -835,9 +853,17 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#reviews">Reviews</a></li>
   </ul>
-  <div class="nav-cta">
+  <button id="menuBtn" onclick="toggleMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:101" aria-label="Menu">
+    <div id="menuIcon" style="width:20px;display:flex;flex-direction:column;gap:5px">
+      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px"></span>
+      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px"></span>
+      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px;width:60%"></span>
+    </div>
+  </button>
+  <div class="nav-cta" id="navCta">
     <a href="#contact" class="btn-primary">Book a call →</a>
   </div>
+</div>
 </nav>
 
 <!-- HERO -->
@@ -851,7 +877,7 @@
   </h1>
   <p class="hero-sub">Custom Shopify websites built exclusively for motorcycle and powersports dealers. Go live in 10 business days.</p>
   <div class="hero-actions">
-    <a href="#work" class="btn-hero">See the work</a>
+    <a href="#contact" class="btn-hero">Get in touch →</a>
     <a href="#services" class="btn-ghost">View pricing</a>
   </div>
   <div class="hero-scroll">
@@ -1437,6 +1463,14 @@
 </footer>
 
 <script>
+
+
+  function toggleMenu(){
+    const m=document.getElementById('mobileMenu');
+    const isOpen=m.style.display==='flex';
+    m.style.display=isOpen?'none':'flex';
+    document.body.style.overflow=isOpen?'':'hidden';
+  }
 
   function toggleFaq(btn) {
     const item = btn.parentElement;
