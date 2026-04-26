@@ -689,7 +689,7 @@
 
 
   /* ── FAQ ── */
-  .faq-list { display: flex; flex-direction: column; max-width: 720px; }
+  .faq-list { display: flex; flex-direction: column; max-width: 100%; }
   .faq-item { border-bottom: 1px solid var(--border); }
   .faq-q {
     width: 100%;
@@ -730,15 +730,90 @@
   }
   .faq-item.open .faq-a { max-height: 200px; padding-bottom: 22px; }
 
+  /* ── TABLET ── */
+  @media (max-width: 1024px) {
+    .why-card { padding: 28px 24px 32px; }
+    .offer-card.featured { gap: 40px; }
+  }
+
+  /* ── MOBILE ── */
   @media (max-width: 768px) {
-    nav { padding: 0 24px; }
+    /* NAV */
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .section-inner { padding: 80px 24px; }
-    .work-grid, .offer-grid, .testimonial-grid { grid-template-columns: 1fr; }
-    .offer-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .nav-cta .btn-primary { padding: 7px 14px; font-size: 12px; }
+
+    /* HERO */
+    .hero { padding: 90px 20px 56px; text-align: center; }
+    .hero-badge { font-size: 10px; }
+    .hero-title { font-size: clamp(40px, 11vw, 64px); }
+    .hero-sub { font-size: 15px; }
+    .hero-actions { justify-content: center; flex-wrap: wrap; }
+    .btn-ghost { padding: 10px 18px; font-size: 13px; }
+
+    /* STATS BAND */
+    .stats { grid-template-columns: repeat(2, 1fr) !important; }
+    .stat-item { padding: 28px 20px; }
+    .stat-num { font-size: 32px; }
+    .stat-label { font-size: 12px; }
+
+    /* SECTIONS */
+    .section-inner { padding: 60px 20px; }
+    .section-title { font-size: clamp(28px, 8vw, 44px); }
+    .section-sub { font-size: 14px; }
+
+    /* WORK GRID */
+    .work-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .work-card { padding: 28px; }
+    .work-arrow { top: 28px; right: 28px; }
+    .work-stats { gap: 14px; flex-wrap: wrap; }
+
+    /* WHY IT WORKS */
+    #why .section-inner > div[style*="grid-template-columns:repeat(3"] {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .why-card { padding: 28px 20px 32px; }
+    .why-illustration { height: 110px; margin-bottom: 20px; }
+    .why-title { font-size: 14px; }
+    .why-desc { font-size: 13px; }
+
+    /* OFFER / PRICING */
+    .offer-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .offer-card { padding: 28px; }
+    .offer-card.featured { grid-column: span 1; grid-template-columns: 1fr; gap: 28px; }
+    .offer-price { font-size: 36px; }
+
+    /* PROCESS */
+    .steps { margin-top: 40px; }
+    .step { padding: 24px 20px; grid-template-columns: 36px 1fr; gap: 16px; }
+    .step-time { display: none; }
+    .step-title { font-size: 14px; }
+
+    /* FAQ */
+    .faq-q { font-size: 14px; padding: 18px 0; }
+    .faq-list { max-width: 100%; }
+
+    /* TESTIMONIALS */
+    .testimonial-grid { grid-template-columns: 1fr; margin-top: 40px; }
+    .testimonial-card { padding: 28px; }
+
+    /* CONTACT FORM */
+    .cta-section .section-inner { padding: 60px 20px; }
+    form > div[style*="grid-template-columns: 1fr 1fr"] {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    form input, form textarea { font-size: 16px !important; }
+
+    /* FOOTER */
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 28px 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr !important; }
+    .hero-title { font-size: clamp(36px, 12vw, 52px); }
+    .section-title { font-size: clamp(26px, 9vw, 38px); }
   }
 </style>
 </head>
@@ -749,8 +824,9 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">torquemade</a>
+  <a href="/" class="nav-logo">TorqueMade</a>
   <ul class="nav-links">
+    <li><a href="/about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="/case-studies">Case Studies</a></li>
     <li><a href="#services">Services</a></li>
