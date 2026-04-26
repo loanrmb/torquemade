@@ -823,11 +823,8 @@
 
 
 <!-- MOBILE MENU -->
-<div id="mobileMenu" style="display:none;position:fixed;inset:0;background:#060606;z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:0">
-  <div style="position:absolute;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.07)">
-    <a href="/" style="font-size:15px;font-weight:600;letter-spacing:-.02em;color:white;text-decoration:none">TorqueMade</a>
-    <button onclick="toggleMenu()" style="background:none;border:none;cursor:pointer;padding:8px;color:white;font-size:22px;line-height:1">&times;</button>
-  </div>
+<div id="mobileMenu" style="display:none;position:fixed;inset:0;background:#060606;z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease">
+  <div style="position:absolute;top:0;left:0;right:0;height:60px;border-bottom:1px solid rgba(255,255,255,.07)"></div>
   <nav style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;border-top:1px solid rgba(255,255,255,.07);margin-top:60px">
     <a href="/about" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">About</a>
     <a href="#work" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Work</a>
@@ -853,12 +850,10 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#reviews">Reviews</a></li>
   </ul>
-  <button id="menuBtn" onclick="toggleMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:101" aria-label="Menu">
-    <div id="menuIcon" style="width:20px;display:flex;flex-direction:column;gap:5px">
-      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px"></span>
-      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px"></span>
-      <span style="display:block;height:1.5px;background:white;transition:all .3s;border-radius:2px;width:60%"></span>
-    </div>
+  <button id="menuBtn" onclick="toggleMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:101;position:relative;width:36px;height:36px" aria-label="Menu">
+    <span id="bl1" style="position:absolute;left:8px;top:10px;display:block;width:20px;height:1.5px;background:white;border-radius:2px;transition:all .3s ease;transform-origin:center"></span>
+    <span id="bl2" style="position:absolute;left:8px;top:17px;display:block;width:20px;height:1.5px;background:white;border-radius:2px;transition:all .3s ease"></span>
+    <span id="bl3" style="position:absolute;left:8px;top:24px;display:block;width:12px;height:1.5px;background:white;border-radius:2px;transition:all .3s ease;transform-origin:center"></span>
   </button>
   <div class="nav-cta" id="navCta">
     <a href="#contact" class="btn-primary">Book a call →</a>
@@ -1468,8 +1463,30 @@
   function toggleMenu(){
     const m=document.getElementById('mobileMenu');
     const isOpen=m.style.display==='flex';
-    m.style.display=isOpen?'none':'flex';
-    document.body.style.overflow=isOpen?'':'hidden';
+    const l1=document.getElementById('bl1');
+    const l2=document.getElementById('bl2');
+    const l3=document.getElementById('bl3');
+    if(isOpen){
+      // Close — animate out then hide
+      m.style.opacity='0';m.style.transform='translateY(-12px)';
+      setTimeout(()=>{m.style.display='none';},300);
+      document.body.style.overflow='';
+      // Reset hamburger
+      l1.style.transform='';l1.style.top='10px';
+      l2.style.opacity='1';l2.style.transform='';
+      l3.style.transform='';l3.style.top='24px';l3.style.width='12px';l3.style.left='8px';
+    } else {
+      // Open — show then animate in
+      m.style.display='flex';
+      requestAnimationFrame(()=>{
+        m.style.opacity='1';m.style.transform='translateY(0)';
+      });
+      document.body.style.overflow='hidden';
+      // Animate to X
+      l1.style.transform='rotate(45deg)';l1.style.top='17px';
+      l2.style.opacity='0';
+      l3.style.transform='rotate(-45deg)';l3.style.top='17px';l3.style.width='20px';l3.style.left='8px';
+    }
   }
 
   function toggleFaq(btn) {
