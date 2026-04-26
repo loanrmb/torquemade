@@ -840,7 +840,9 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="position:relative">
+  <canvas id="heroGrid" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:100vh;padding:120px 48px 80px">
   <div class="hero-badge"><span></span> Shopify specialist — Powersports &amp; Motorcycle Dealers</div>
   <h1 class="hero-title">
     Your dealership.<br>
@@ -854,6 +856,7 @@
   <div class="hero-scroll">
     <div class="scroll-line"></div>
   </div>
+</div>
 </section>
 
 <!-- STATS -->
@@ -1440,6 +1443,27 @@
     document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+
+  // Hero grid animation
+  (function(){
+    const c=document.getElementById('heroGrid');
+    if(!c)return;
+    const ctx=c.getContext('2d');
+    let W,H,offset=0;
+    function init(){W=c.offsetWidth;H=c.offsetHeight;c.width=W*2;c.height=H*2;ctx.scale(2,2);}
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      offset=(offset+0.06)%40;
+      ctx.strokeStyle='rgba(255,255,255,0.04)';
+      ctx.lineWidth=0.5;
+      for(let x=offset;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+      for(let y=offset;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+      requestAnimationFrame(draw);
+    }
+    init();draw();
+    window.addEventListener('resize',init);
+  })();
 
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
