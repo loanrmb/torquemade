@@ -1168,6 +1168,13 @@
           <div class="offer-name">Site Build</div>
           <div class="offer-price" style="font-size:32px;line-height:1.2">Custom quote<br><span style="font-size:16px;font-weight:300;color:var(--text-2);letter-spacing:0">based on your dealership</span></div>
           <p class="offer-desc">A complete, custom Shopify storefront built from scratch around your dealership. Pricing depends on the size of your catalogue, the number of brands you carry, and the features you need.</p>
+          <div style="margin:20px 0 24px;padding:18px 20px;border:1px solid var(--border);border-radius:8px;display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,0.02)">
+            <span style="font-size:16px;flex-shrink:0">⚡</span>
+            <div>
+              <p style="font-size:12px;font-weight:500;margin-bottom:4px;color:var(--text)">Why Shopify?</p>
+              <p style="font-size:12px;color:var(--text-2);line-height:1.65;font-weight:300">Most dealerships sell parts or accessories alongside bikes. Shopify lets you flip to a full online store the moment you need it — no rebuild. And if you don't need a checkout yet, disabling it brings the platform cost to <span style="color:var(--text);font-weight:500">$10/month</span> instead of $39.</p>
+            </div>
+          </div>
           <div class="offer-cta">
             <a href="#contact" class="btn-hero">Get a free quote →</a>
           </div>
@@ -1185,39 +1192,75 @@
         </div>
       </div>
 
-      <div class="offer-card">
-        <div class="offer-name">Maintenance</div>
-        <div class="offer-price">$250 <sub>/mo</sub></div>
-        <p class="offer-desc">Monthly analytics review. I look at your data, find what's working and what's losing you customers, and fix it.</p>
-        <ul class="offer-list">
-          <li>Monthly GA4 + Search Console review</li>
-          <li>Small tweaks based on data or on-demand</li>
-          <li>Monthly findings email</li>
-        </ul>
-      </div>
+      <div class="offer-card" style="grid-column:span 2;padding:0;overflow:hidden">
+        <!-- Header row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+          <div style="padding:28px 32px;border-right:1px solid var(--border)">
+            <div class="offer-name" style="margin-bottom:8px">Monthly retainer</div>
+            <p style="font-size:12px;color:var(--text-3);line-height:1.6;font-weight:300">Keep the site performing after launch. Cancel anytime with 30 days notice.</p>
+          </div>
+          <div style="padding:28px 32px;border-right:1px solid var(--border);background:var(--surface)">
+            <div class="offer-name">Maintenance</div>
+            <div class="offer-price" style="font-size:36px">$250 <sub>/mo</sub></div>
+          </div>
+          <div style="padding:28px 32px">
+            <div class="offer-name">Growth</div>
+            <div class="offer-price" style="font-size:36px">$550 <sub>/mo</sub></div>
+          </div>
+        </div>
 
-      <div class="offer-card" style="border-left: none">
-        <div class="offer-name">Growth</div>
-        <div class="offer-price">$550 <sub>/mo</sub></div>
-        <p class="offer-desc">Everything in Maintenance plus active SEO, Google Business optimization, and seasonal pages to keep bringing new customers in.</p>
-        <ul class="offer-list">
-          <li>Everything in Maintenance</li>
-          <li>Local SEO (rankings &amp; citations)</li>
-          <li>Google Business optimization</li>
-          <li>1 seasonal promo page/quarter</li>
-          <li>Priority 24h response</li>
-        </ul>
+        <!-- Feature rows -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr">
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Monthly analytics review<br><span style="font-size:11px;color:var(--text-3)">(GA4, Search Console, Shopify)</span></div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Data-driven conversion tweaks</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Unlimited minor content updates</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Monthly findings email</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">New pages or sections</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Local SEO &amp; keyword targeting</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Google Business optimization</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">1 seasonal promo page / quarter</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#3ecf8e">✓</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">High-end video production</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);display:flex;align-items:center">Paid ads, social media, redesigns</div>
+          <div style="padding:16px 32px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+          <div style="padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,0.18)">—</div>
+
+          <div style="padding:14px 32px;grid-column:span 3;border-top:none;background:rgba(255,255,255,0.02)">
+            <p style="font-size:12px;color:rgba(255,255,255,0.35);font-family:var(--mono)">Anything outside scope — new pages, sections, ad campaigns — is available as a <span style="color:rgba(255,255,255,0.6)">custom quote</span>. Just ask.</p>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <!-- Shopify note -->
-    <div style="margin-top:32px;padding:24px 28px;border:1px solid var(--border);border-radius:10px;display:flex;gap:20px;align-items:flex-start">
-      <div style="font-size:18px;flex-shrink:0;margin-top:2px">⚡</div>
-      <div>
-        <p style="font-size:13px;font-weight:500;margin-bottom:6px">Why Shopify?</p>
-        <p style="font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300">Most dealerships sell accessories or parts alongside bikes. Shopify lets you flip to a full online store the moment you need it — no rebuild, no migration, no headache. And if you don't need a checkout right now, disabling self-checkout brings the platform cost down to <span style="color:var(--text);font-weight:500">10$/month</span> instead of 39.</p>
-      </div>
-    </div>
+
 
   </div>
 </section>
