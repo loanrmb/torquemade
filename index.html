@@ -824,6 +824,10 @@
     .faq-q { font-size: 14px; padding: 18px 0; }
     .faq-list { max-width: 100%; }
 
+    /* REVIEWS */
+    .reviews-grid { grid-template-columns: 1fr !important; }
+    .review-card { padding: 28px !important; }
+
     /* TESTIMONIALS */
     .testimonial-grid { grid-template-columns: 1fr; margin-top: 40px; }
     .testimonial-card { padding: 28px; }
@@ -870,6 +874,7 @@
     <a href="#work" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Work</a>
     <a href="/case-studies" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Case Studies</a>
     <a href="#services" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Services</a>
+    <a href="#reviews" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">Reviews</a>
     <a href="#faq" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:-.02em">FAQ</a>
     <a href="#contact" onclick="toggleMenu()" style="font-size:24px;font-weight:500;color:white;text-decoration:none;padding:22px 0;width:100%;text-align:center;letter-spacing:-.02em">Contact</a>
   </nav>
@@ -888,6 +893,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     
   </ul>
   <button id="menuBtn" onclick="toggleMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:101;position:relative;width:36px;height:36px" aria-label="Menu">
@@ -1492,6 +1498,55 @@
 
 
 <!-- CONTACT -->
+
+<!-- REVIEWS -->
+<section id="reviews" style="border-top: 1px solid var(--border)">
+  <div class="section-inner">
+    <p class="section-label reveal">Client reviews</p>
+    <h2 class="section-title reveal">Real dealerships.<br>Real results.</h2>
+
+    <div class="reviews-grid reveal" style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+
+      <!-- Review 1 — Sprint Motors -->
+      <div class="review-card" style="background:var(--bg);padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:32px">
+        <div>
+          <div style="display:flex;gap:4px;margin-bottom:20px">
+            <span style="color:#f59e0b;font-size:14px">★★★★★</span>
+          </div>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.8;font-weight:300;font-style:italic">"Loan took the time to listen and proposed the most adapted solutions. The website had a huge impact on our business — the feedback has been extremely positive. We then entrusted him with 2 additional missions to highlight 2 important brands through 2 separate sites, with the same result: attractiveness, visibility, ergonomics. We are extremely happy and recommend Loan for his availability and professionalism."</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding-top:24px;border-top:1px solid var(--border)">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0">P</div>
+          <div>
+            <div style="font-size:14px;font-weight:500">Pierre</div>
+            <div style="font-size:12px;color:var(--text-3);font-family:var(--mono)">Salesman · Sprint Motors, Bordeaux</div>
+          </div>
+          <a href="https://sprintmotors.com" target="_blank" style="margin-left:auto;font-size:11px;color:var(--text-3);font-family:var(--mono);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--text-2)'" onmouseout="this.style.color='var(--text-3)'">sprintmotors.com ↗</a>
+        </div>
+      </div>
+
+      <!-- Review 2 — Moto Passion 65 -->
+      <div class="review-card" style="background:var(--bg);padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:32px">
+        <div>
+          <div style="display:flex;gap:4px;margin-bottom:20px">
+            <span style="color:#f59e0b;font-size:14px">★★★★★</span>
+          </div>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.8;font-weight:300;font-style:italic">"I highly recommend Loan's professionalism for website creation. He listened to my requests and quickly understood my expectations. I am extremely satisfied with his work. Thank you for the quality, availability, and speed."</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding-top:24px;border-top:1px solid var(--border)">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0">P</div>
+          <div>
+            <div style="font-size:14px;font-weight:500">Paul</div>
+            <div style="font-size:12px;color:var(--text-3);font-family:var(--mono)">Owner · Moto Passion 65, Tarbes</div>
+          </div>
+          <a href="https://motopassion65.com" target="_blank" style="margin-left:auto;font-size:11px;color:var(--text-3);font-family:var(--mono);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--text-2)'" onmouseout="this.style.color='var(--text-3)'">motopassion65.com ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="cta-section" id="contact">
   <div class="section-inner" style="max-width: 680px; padding-top: 120px; padding-bottom: 120px;">
     <div class="cta-inner" style="padding: 0; text-align: left; max-width: 100%;">
